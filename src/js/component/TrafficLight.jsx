@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import TrafficLightContainer from './TrafficLightContainer';
+import ControlButtons from './ControlButton';
 
 const TrafficLight = () => {
   const [selectedColor, setSelectedColor] = useState("red");
@@ -17,26 +19,13 @@ const TrafficLight = () => {
       default:
         break;
     }
-  }
-  
+  };
+
   return (
     <div className="container my-5">
       <div className="post bg-dark"></div>
-      <div className="container bg-dark p-3 rounded">
-        <div
-          className={`light red ${selectedColor === 'red' && 'selected'}`}
-          onClick={() => setSelectedColor('red')}
-        ></div>
-        <div
-          className={`light yellow ${selectedColor === 'yellow' && 'selected'}`}
-          onClick={() => setSelectedColor('yellow')}
-        ></div>
-        <div
-          className={`light green ${selectedColor === 'green' && 'selected'}`}
-          onClick={() => setSelectedColor('green')}
-        ></div>
-      </div>
-      <button className="btn mt-4 bg-dark text-light" onClick={changeColor}>CHANGE COLOR</button>
+      <TrafficLightContainer selectedColor={selectedColor} onColorChange={setSelectedColor} />
+      <ControlButtons onChangeColor={changeColor} />
     </div>
   );
 };
